@@ -90,13 +90,6 @@
 )
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
-(add-hook 'web-mode-hook
-          (lambda ()
-            (if (equal web-mode-content-type "javascript")
-                (web-mode-set-content-type "jsx")
-              (message "now set to: %s" web-mode-content-type))))
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -107,7 +100,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (yaml-mode swift-mode scala-mode less-css-mode jsx-mode json-mode js2-mode handlebars-mode go-mode auto-complete))))
+    (rjsx-mode yaml-mode swift-mode scala-mode less-css-mode jsx-mode json-mode js2-mode handlebars-mode go-mode auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -122,3 +115,8 @@
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   )
 
+
+(global-set-key (kbd "C-c -") 'shrink-window)
+(global-set-key (kbd "C-c +") 'enlarge-window)
+(global-set-key (kbd "C-c <right>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-c <left>") 'enlarge-window-horizontally)
