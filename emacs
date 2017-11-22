@@ -1,3 +1,10 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (when (eq system-type 'darwin)
   (setq mac-right-option-modifier 'none))
 (set-foreground-color "white")
@@ -15,7 +22,6 @@
 (column-number-mode t)
 
 (setq cursor-type 'box)
-
 ;; scroll one line at a time
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
@@ -91,32 +97,55 @@
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
 
+;; packages
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+(global-set-key (kbd "C-c -") 'shrink-window)
+(global-set-key (kbd "C-c +") 'enlarge-window)
+(global-set-key (kbd "C-c <down>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-c <up>") 'enlarge-window-horizontally)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (rjsx-mode yaml-mode swift-mode scala-mode less-css-mode jsx-mode json-mode js2-mode handlebars-mode go-mode auto-complete))))
+    (solidity-mode company-irony irony yasnippet yaml-mode rjsx-mode markdown-mode lua-mode less-css-mode json-mode jgraph-mode direx company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Menlo")))))
+ '(company-scrollbar-bg ((t (:background "#999999"))))
+ '(company-scrollbar-fg ((t (:background "#555555"))))
+ '(company-tooltip ((t (:background "#cccccc" :foreground "black"))))
+ '(company-tooltip-common ((t (:inherit font-lock-constant-face))))
+ '(company-tooltip-selection ((t (:inherit font-lock-function-name-face)))))
 
-;; packages
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  )
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
 
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(add-hook 'after-init-hook 'global-company-mode)
 
-(global-set-key (kbd "C-c -") 'shrink-window)
-(global-set-key (kbd "C-c +") 'enlarge-window)
-(global-set-key (kbd "C-c <right>") 'shrink-window-horizontally)
-(global-set-key (kbd "C-c <left>") 'enlarge-window-horizontally)
+(require 'color)
+  
+  (let ((bg (face-attribute 'default :background)))
+    (custom-set-faces
+     '(company-tooltip ((t (:background "#cccccc" :foreground "black"))))
+     '(company-scrollbar-bg ((t (:background "#999999"))))
+     '(company-scrollbar-fg ((t (:background "#555555"))))
+     `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+     `(company-tooltip-common ((t (:inherit font-lock-constant-face))))))
+
+;; set up ido mode
+(require `ido)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+;; set up org mode
+(setq org-directory "~/org")
