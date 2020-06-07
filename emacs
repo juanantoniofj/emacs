@@ -300,3 +300,4 @@
       mac-option-modifier 'meta
       mac-right-option-modifier 'none
       select-enable-clipboard t)
+
