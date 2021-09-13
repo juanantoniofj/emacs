@@ -1,15 +1,14 @@
-;(set-foreground-color "white")
+;;(set-foreground-color "white")
 (set-mouse-color "goldenrod")
-;(set-face-background 'region "blue")
+;;(set-face-background 'region "blue")
 (set-face-attribute 'default nil :height 80)
-;(set-background-color "white")
-;(set-face-foreground 'minibuffer-prompt "white")
+;;(set-background-color "white")
+(set-face-foreground 'minibuffer-prompt "white")
 (setq global-font-lock-mode 1)
 (setq c-set-style "stroustrup")
 (setq c-default-style "stroustrup")
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
-(setq indent-line-function 'insert-tab)
 (setq inhibit-startup-message t)
 (column-number-mode t)
 (menu-bar-mode -1)
@@ -21,8 +20,7 @@
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-follow-mouse 't)
-(setq scroll-step            1
-      scroll-conservatively  10000)
+(setq scroll-step 1)
 
 (global-set-key (kbd "<C-up>") 'shrink-window)
 (global-set-key (kbd "<C-down>") 'enlarge-window)
@@ -98,29 +96,26 @@
  '(custom-enabled-themes (quote (manoj-dark)))
  '(custom-safe-themes
    (quote
-    ("a41b81af6336bd822137d4341f7e16495a49b06c180d6a6417bf9fd1001b6d2b" "55c2069e99ea18e4751bd5331b245a2752a808e91e09ccec16eb25dadbe06354" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default)))
+    ("55c2069e99ea18e4751bd5331b245a2752a808e91e09ccec16eb25dadbe06354" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default)))
  '(org-startup-truncated nil)
  '(package-selected-packages
    (quote
-    (js-doc docker-compose-mode dockerfile-mode dracula-theme solarized-theme company-box lsp-ui ccls gnu-elpa-keyring-update company-lsp lsp-mode graphql-mode json-mode tide tern-auto-complete tern emmet-mode prettier-js-mode add-node-modules-path sr-speedbar company-irony ac-html go-mode polymode js3-mode web-mode ng2-mode lit-mode multi-web-mode vue-mode mmm-mode rjsx-mode indium js2-mode markdown-mode column-enforce-mode fill-column-indicator flycheck company-web company-ebdb company javap-mode yaml-mode auto-complete)))
+    (glsl-mode cmake-mode solidity-flycheck solidity-mode dracula-theme solarized-theme company-box lsp-ui ccls gnu-elpa-keyring-update company-lsp lsp-mode graphql-mode json-mode tide tern-auto-complete tern emmet-mode prettier-js-mode add-node-modules-path sr-speedbar company-irony ac-html go-mode polymode js3-mode web-mode ng2-mode lit-mode multi-web-mode vue-mode mmm-mode rjsx-mode indium js2-mode markdown-mode column-enforce-mode fill-column-indicator flycheck company-web company-ebdb company javap-mode yaml-mode auto-complete)))
  '(safe-local-variable-values
    (quote
-    ((eval\.
-      (prettier-js-mode -1))
-     (eval\.
-      (prettier-js-mode 0))
-     (prettier-js-mode 0)
-     (prettier-js-mode . 0)
-     (js-indent-level . 4)
-     (web-mode-code-indent-offset 4)
-     (indent-tabs-mode nil)
-     (web-mode-indent-style 4)
-     (indent-tabs-mode \.nil)
-     (web-mode-indent-style . 4)
-     (standard-indent 4)
-     (js2-basic-offset 4)
-     (js-indent-level 4)
-     (tab-width 4)))))
+    ((eval let
+           ((root
+             (projectile-project-root)))
+           (setq-local company-clang-arguments
+                       (list
+                        (concat "-I" root "EVE")))
+           (setq-local flycheck-clang-include-path
+                       (list
+                        (concat root "EVE")))))))
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
+ '(web-mode-html-indent-offset 2)
+ '(web-mode-markup-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -134,11 +129,10 @@
 (setq whitespace-style '(face lines-tail))
 (setq css-indent-offset 2)
 (setq-default js2-basic-offset 2
-              js-indent-level 2
+              js-indent-level 4
               tab-width 2
               standard-indent 2
               web-mode-indent-style 2
-              web-mode-code-indent-offset 2
               )
 
 (add-hook 'web-mode-hook 'whitespace-mode)
@@ -300,4 +294,3 @@
       mac-option-modifier 'meta
       mac-right-option-modifier 'none
       select-enable-clipboard t)
-
